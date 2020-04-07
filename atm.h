@@ -18,4 +18,18 @@
    2590 0x11012000
   31999 0xf3412014
 */
+#define ONE  0X1
+#define FIVE  0X10
+#define TEN  0X100
+#define TWENTY  0X1000
+#define FIFTY  0X10000
+#define HUNDRED  0X100000
+#define FIVE_HUNDRED  0X1000000
+#define TWO_THOUSAND  0X10000000
+
+#define NOTES {TWO_THOUSAND, FIVE_HUNDRED, HUNDRED, FIFTY, TWENTY, TEN, FIVE, ONE}
+#define NOTES_VALUE {2000, 500, 100, 50, 20, 10, 5, 1}
+
+#define NO_OF_NOTES 8
+
 unsigned int get_money(unsigned short int);
