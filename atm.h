@@ -33,3 +33,4 @@
 #define NO_OF_NOTES 8
 
 unsigned int get_money(unsigned short int);
+void display_money(unsigned int);

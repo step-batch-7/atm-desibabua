@@ -1,6 +1,20 @@
 #include <stdio.h>
 #include "atm.h"
 
+void display_money(unsigned int notes)
+{
+	int notes_value[NO_OF_NOTES] = NOTES_VALUE;
+	int denomination = 0x10000000;
+	int note_count;
+	for (int index = 0; index < NO_OF_NOTES; index++)
+	{
+		note_count = notes / denomination;
+		if(note_count) printf("	%d notes of Rs %d\n",note_count,notes_value[index]);
+		notes <<= 4;
+	}
+	printf("\n");
+}
+
 unsigned int get_money(unsigned short int amount)
 {
 	unsigned int denomination = 0;
