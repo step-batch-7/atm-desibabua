@@ -9,7 +9,7 @@ void display_money(unsigned int notes_denomination)
 	for (int i = 0; i < NO_OF_NOTES; i++)
 	{
 		note_count = notes_denomination / denomination;
-		if(note_count) printf("	%d notes of Rs %d\n",note_count,notes[i]);
+		note_count && printf("	%d notes of Rs %d\n",note_count,notes[i]);
 		notes_denomination <<= 4;
 	}
 	printf("\n");
@@ -17,18 +17,17 @@ void display_money(unsigned int notes_denomination)
 
 unsigned int get_money(unsigned short int amount)
 {
-	unsigned int denomination = 0x00000000;
+	unsigned int note_count = 0x00000000;
 	int max_allowed_amount = 31999;
 	int notes[NO_OF_NOTES] = NOTES;
 	if(amount <= max_allowed_amount)
 	{
 		for (int i = 0; i < NO_OF_NOTES; i++)
 		{
-			denomination <<= 4;
-			int no_notes = amount / notes[i];
-			denomination |= no_notes;
-			amount -= no_notes * notes[i];
+			note_count <<= 4;
+			note_count |= amount / notes[i];
+			amount %= notes[i];
 		}
 	}
-	return denomination;
+	return note_count;
 }
