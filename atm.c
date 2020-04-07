@@ -10,14 +10,6 @@
 #define FIVE_HUNDRED_NOTE  0X1000000
 #define TWO_THOUSAND_NOTE  0X10000000
 
-void get_denomination(unsigned short int *amount,unsigned int *previous_denomination,int note_value,unsigned int hex_value)
-{
-	int no_of_notes = 0;
-	no_of_notes = *amount / note_value;
-	*previous_denomination = *previous_denomination | no_of_notes * hex_value;
-	*amount = *amount - no_of_notes * note_value;
-}
-
 unsigned int get_money(unsigned short int amount)
 {
 	unsigned int denomination = 0;
@@ -25,7 +17,9 @@ unsigned int get_money(unsigned short int amount)
 	int notes_value[8] = {2000, 500, 100, 50, 20, 10, 5, 1};
 	for (int index = 0; index < 8;index++)
 	{
-		get_denomination(&amount, &denomination, notes_value[index], notes[index]);
+		int no_of_notes = amount / notes_value[index];
+		denomination = denomination | no_of_notes * notes[index];
+		amount = amount - no_of_notes * notes_value[index];
 	}
 	return denomination;
 }
