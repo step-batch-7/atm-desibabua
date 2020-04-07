@@ -21,13 +21,11 @@ void get_denomination(unsigned short int *amount,unsigned int *previous_denomina
 unsigned int get_money(unsigned short int amount)
 {
 	unsigned int denomination = 0;
-	get_denomination(&amount, &denomination, 2000, TWO_THOUSAND_NOTE);
-	get_denomination(&amount, &denomination, 500, FIVE_HUNDRED_NOTE);
-	get_denomination(&amount, &denomination, 100, HUNDRED_NOTE);
-	get_denomination(&amount, &denomination, 50, FIFTY_NOTE);
-	get_denomination(&amount, &denomination, 20, TWENTY_NOTE);
-	get_denomination(&amount, &denomination, 10, TEN_NOTE);
-	get_denomination(&amount, &denomination, 5, FIVE_NOTE);
-	get_denomination(&amount, &denomination, 1, ONE_NOTE);
+	unsigned int notes[8] = {TWO_THOUSAND_NOTE, FIVE_HUNDRED_NOTE, HUNDRED_NOTE, FIFTY_NOTE, TWENTY_NOTE, TEN_NOTE, FIVE_NOTE, ONE_NOTE};
+	int notes_value[8] = {2000, 500, 100, 50, 20, 10, 5, 1};
+	for (int index = 0; index < 8;index++)
+	{
+		get_denomination(&amount, &denomination, notes_value[index], notes[index]);
+	}
 	return denomination;
 }
