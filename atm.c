@@ -9,7 +9,7 @@ void display_money(unsigned int notes_denomination)
 	for (int i = 0; i < NO_OF_NOTES; i++)
 	{
 		note_count = notes_denomination / denomination;
-		note_count && printf("	%d notes of Rs %d\n",note_count,notes[i]);
+		note_count &&printf("	%d %s of Rs %d\n", note_count, note_count > 1 ? "notes" : "note", notes[i]);
 		notes_denomination <<= 4;
 	}
 	printf("\n");
