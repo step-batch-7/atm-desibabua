@@ -3,11 +3,12 @@
 
 int main(void)
 {
-  unsigned short int amounts[] = {1, 10, 39, 589, 2590, 31999};
-  for (int i = 0; i < 6; i++)
+  unsigned short amounts[] = {31999};
+  // unsigned short int amounts[] = {1, 10, 39, 589, 2590, 31999};
+  REPEAT(0,1)
   {
-    unsigned int notes = get_money(amounts[i]);
-    printf("%5u %08x\n", amounts[i], notes);
+    unsigned notes = get_money(amounts[index]);
+    printf("%5u %08x\n", amounts[index], notes);
     display_money(notes);
   }
 

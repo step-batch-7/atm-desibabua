@@ -1,32 +1,29 @@
 #include <stdio.h>
 #include "atm.h"
 
-void display_money(unsigned int notes_denomination)
+void display_money(unsigned notes_denominations)
 {
-	int notes[NO_OF_NOTES] = NOTES;
-	int denomination = 0x10000000;
-	int note_count;
-	for (int i = 0; i < NO_OF_NOTES; i++)
+	NOTES;
+	unsigned note_count;
+	REPEAT(0,8)
 	{
-		note_count = notes_denomination / denomination;
-		note_count &&printf("	%d %s of Rs %d\n", note_count, note_count > 1 ? "notes" : "note", notes[i]);
-		notes_denomination <<= 4;
+		note_count = notes_denominations << index * 4 >> 28;
+		note_count &&printf("	%d %s of Rs %d\n", note_count, note_count > 1 ? "notes" : "note", notes[index]);
 	}
-	printf("\n");
+	EMPTY_LINE;
 }
 
-unsigned int get_money(unsigned short int amount)
+unsigned get_money(unsigned short amount)
 {
-	unsigned int note_count = 0x00000000;
-	int max_allowed_amount = 31999;
-	int notes[NO_OF_NOTES] = NOTES;
-	if(amount <= max_allowed_amount)
+	NOTES;
+	unsigned note_count = 0;
+	IF_LESS_THAN_MAX_AMOUNT
 	{
-		for (int i = 0; i < NO_OF_NOTES; i++)
+		REPEAT(0,8)
 		{
 			note_count <<= 4;
-			note_count |= amount / notes[i];
-			amount %= notes[i];
+			note_count |= amount / notes[index];
+			amount %= notes[index];
 		}
 	}
 	return note_count;

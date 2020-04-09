@@ -19,9 +19,10 @@
   31999 0xf3412014
 */
 
-#define NOTES {2000, 500, 100, 50, 20, 10, 5, 1}
-
-#define NO_OF_NOTES 8
+#define NOTES int notes[8] = {2000, 500, 100, 50, 20, 10, 5, 1}
+#define REPEAT(start,end) for(int index = start; index < end; index++)
+#define EMPTY_LINE printf("\n")
+#define IF_LESS_THAN_MAX_AMOUNT if(amount <= 31999)
 
 unsigned int get_money(unsigned short int);
 void display_money(unsigned int);
